@@ -55,7 +55,7 @@ export function create(app: App) {
                     type: 'button',
                     child: {
                       type: 'icon',
-                      name: 'plus.app.fill'
+                      name: 'plus'
                     },
                     on_click: {
                       action: 'add-option',

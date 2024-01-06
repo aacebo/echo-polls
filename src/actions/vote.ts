@@ -1,9 +1,7 @@
 import { App, ActionHandlerArgs, blocks } from '@aacebo/echo';
 
 export function vote(app: App) {
-  return async ({ block_id, message, user, ack }: ActionHandlerArgs<'button', { [userId: string]: boolean }>['message']) => {
-    ack();
-
+  return async ({ block_id, message, user, ack }: ActionHandlerArgs<'button'>['message']) => {
     const child = message.body.child as blocks.Column;
     const title = child.children[0] as blocks.Title;
     const options = child.children.slice(1) as blocks.Button[];
@@ -78,5 +76,7 @@ export function vote(app: App) {
         ]
       }
     });
+
+    ack();
   };
 }

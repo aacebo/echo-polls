@@ -74,6 +74,13 @@ export function create(app: App) {
         on_submit: {
           action: 'send'
         }
+      },
+      submit: {
+        type: 'text',
+        text: 'Send'
+      },
+      on_submit: {
+        action: 'send'
       }
     });
 

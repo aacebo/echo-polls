@@ -1,0 +1,19 @@
+{
+	"icon_url": "https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png",
+	"name": "polls",
+	"display_name": "Polls",
+	"description": "Polls lets you gather user feedback in a graphic way.",
+	"scopes": [
+    "messages:read",
+    "messages:write"
+  ],
+	"events": [],
+	"shortcuts": {
+		"create": {
+			"type": "chat",
+			"name": "New",
+			"description": "create a new poll"
+		}
+	},
+	"link_domains": []
+}

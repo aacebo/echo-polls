@@ -3,8 +3,8 @@ import { App, ActionHandlerArgs, blocks } from '@aacebo/echo';
 import { Form } from '../models';
 
 export function send(app: App) {
-  return async ({ chat, user, value, ack }: ActionHandlerArgs<'form', Form>['chat']) => {
-    await app.api.views.dialogs.close(user.name, 'polls.create');
+  return async ({ session_id, chat, user, value, ack }: ActionHandlerArgs<'form', Form>['chat']) => {
+    await app.api.views.dialogs.close(session_id, 'polls.create');
     await app.api.messages.createFor(user.name, chat.id, {
       visibility: 'public',
       child: {

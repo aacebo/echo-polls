@@ -1,7 +1,7 @@
 import { App, ShortcutHandlerArgs, blocks } from '@aacebo/echo';
 
 export function create(app: App) {
-  return async ({ chat, user, ack }: ShortcutHandlerArgs['chat']) => {
+  return async ({ session_id, chat, ack }: ShortcutHandlerArgs['chat']) => {
     const options: blocks.Block[] = [
       {
         id: '0',
@@ -13,7 +13,7 @@ export function create(app: App) {
       }
     ];
 
-    await app.api.views.dialogs.open(user.name, {
+    await app.api.views.dialogs.open(session_id, {
       id: 'polls.create',
       context_id: chat.id,
       type: 'chat',

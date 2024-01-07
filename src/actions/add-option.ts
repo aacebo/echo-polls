@@ -1,7 +1,7 @@
 import { App, ActionHandlerArgs, blocks } from '@aacebo/echo';
 
 export function addOption(app: App) {
-  return async ({ chat, user, value, ack }: ActionHandlerArgs<'button', blocks.Block[]>['chat']) => {
+  return async ({ session_id, chat, value, ack }: ActionHandlerArgs<'button', blocks.Block[]>['chat']) => {
     const options: blocks.Block[] = [
       ...value,
       {
@@ -14,7 +14,7 @@ export function addOption(app: App) {
       }
     ]
 
-    await app.api.views.dialogs.open(user.name, {
+    await app.api.views.dialogs.open(session_id, {
       id: 'polls.create',
       context_id: chat.id,
       type: 'chat',

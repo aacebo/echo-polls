@@ -9,7 +9,7 @@ export function vote(app: App) {
 
     for (let i = 0; i < options.length; i++) {
       const isPrev = options[i].on_click?.value[user.id] === true;
-      const column = options[i].child as blocks.Column;
+      const column = (options[i].child as blocks.Container).child as blocks.Column;
       let progress = column.children[1] as blocks.Progress;
       let row = column.children.length === 3 ? column.children[2] as blocks.Row : undefined;
       let value = options[i].on_click?.value || { };

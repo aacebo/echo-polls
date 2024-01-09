@@ -22,57 +22,64 @@ export function create(app: App) {
         text: 'New Poll'
       },
       body: {
-        id: 'main',
-        type: 'form',
-        children: [
-          {
-            id: 'title',
-            type: 'input',
-            label: {
-              type: 'text',
-              text: 'Title'
-            },
-            placeholder: {
-              type: 'text',
-              text: 'Title...'
-            }
-          },
-          {
-            id: 'options',
-            type: 'form',
-            children: [
-              {
-                type: 'row',
-                children: [
-                  {
-                    type: 'text',
-                    text: 'Options:'
-                  },
-                  {
-                    type: 'spacer'
-                  },
-                  {
-                    type: 'button',
-                    child: {
-                      type: 'icon',
-                      name: 'plus'
-                    },
-                    on_click: {
-                      action: 'add-option',
-                      value: options
-                    }
-                  }
-                ]
+        type: 'container',
+        padding: {
+          left: 10,
+          right: 10
+        },
+        child: {
+          id: 'main',
+          type: 'form',
+          children: [
+            {
+              id: 'title',
+              type: 'input',
+              label: {
+                type: 'text',
+                text: 'Title'
               },
-              ...options,
-              {
-                type: 'spacer'
+              placeholder: {
+                type: 'text',
+                text: 'Title...'
               }
-            ]
+            },
+            {
+              id: 'options',
+              type: 'form',
+              children: [
+                {
+                  type: 'row',
+                  children: [
+                    {
+                      type: 'text',
+                      text: 'Options:'
+                    },
+                    {
+                      type: 'spacer'
+                    },
+                    {
+                      type: 'button',
+                      child: {
+                        type: 'icon',
+                        name: 'plus'
+                      },
+                      on_click: {
+                        action: 'add-option',
+                        value: options
+                      }
+                    }
+                  ]
+                },
+                ...options,
+                {
+                  type: 'spacer'
+                }
+              ]
+            }
+          ],
+          on_submit: {
+            action: 'send'
           }
-        ],
-        on_submit: {
-          action: 'send'
         }
       },
       submit: {

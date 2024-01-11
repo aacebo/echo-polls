@@ -13,83 +13,87 @@ export function create(app: App) {
       }
     ];
 
-    await app.api.views.dialogs.open(session_id, {
-      id: 'polls.create',
-      context_id: chat.id,
-      type: 'chat',
-      title: {
-        type: 'text',
-        text: 'New Poll'
-      },
-      body: {
-        type: 'container',
-        padding: {
-          left: 10,
-          right: 10
+    try {
+      await app.api.views.dialogs.open(session_id, {
+        id: 'polls.create',
+        context_id: chat.id,
+        type: 'chat',
+        title: {
+          type: 'text',
+          text: 'New Poll'
         },
-        child: {
-          id: 'main',
-          type: 'form',
-          children: [
-            {
-              id: 'title',
-              type: 'input',
-              label: {
-                type: 'text',
-                text: 'Title'
-              },
-              placeholder: {
-                type: 'text',
-                text: 'Title...'
-              }
-            },
-            {
-              id: 'options',
-              type: 'form',
-              children: [
-                {
-                  type: 'row',
-                  children: [
-                    {
-                      type: 'text',
-                      text: 'Options:'
-                    },
-                    {
-                      type: 'spacer'
-                    },
-                    {
-                      type: 'button',
-                      child: {
-                        type: 'icon',
-                        name: 'plus'
-                      },
-                      on_click: {
-                        action: 'add-option',
-                        value: options
-                      }
-                    }
-                  ]
+        body: {
+          type: 'container',
+          padding: {
+            left: 10,
+            right: 10
+          },
+          child: {
+            id: 'main',
+            type: 'form',
+            children: [
+              {
+                id: 'title',
+                type: 'input',
+                label: {
+                  type: 'text',
+                  text: 'Title'
                 },
-                ...options,
-                {
-                  type: 'spacer'
+                placeholder: {
+                  type: 'text',
+                  text: 'Title...'
                 }
-              ]
+              },
+              {
+                id: 'options',
+                type: 'form',
+                children: [
+                  {
+                    type: 'row',
+                    children: [
+                      {
+                        type: 'text',
+                        text: 'Options:'
+                      },
+                      {
+                        type: 'spacer'
+                      },
+                      {
+                        type: 'button',
+                        child: {
+                          type: 'icon',
+                          name: 'plus'
+                        },
+                        on_click: {
+                          action: 'add-option',
+                          value: options
+                        }
+                      }
+                    ]
+                  },
+                  ...options,
+                  {
+                    type: 'spacer'
+                  }
+                ]
+              }
+            ],
+            on_submit: {
+              action: 'send'
             }
-          ],
-          on_submit: {
-            action: 'send'
           }
+        },
+        submit: {
+          type: 'text',
+          text: 'Send'
+        },
+        on_submit: {
+          action: 'send'
         }
-      },
-      submit: {
-        type: 'text',
-        text: 'Send'
-      },
-      on_submit: {
-        action: 'send'
-      }
-    });
+      });
+    } catch (err) {
+      app.log(err);
+    }
 
     ack();
   };

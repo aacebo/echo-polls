@@ -23,37 +23,41 @@ export function send(app: App) {
                 type: 'title',
                 text: value.title
               },
-              ...Object.values(value.options).map((o, i) => ({
-                id: i.toString(),
-                type: 'button',
-                child: {
-                  type: 'container',
-                  padding: {
-                    top: 5,
-                    right: 5,
-                    bottom: 5,
-                    left: 5
-                  },
+              {
+                id: 'options',
+                type: 'column',
+                children: Object.values(value.options).map((o, i) => ({
+                  id: i.toString(),
+                  type: 'button',
                   child: {
-                    type: 'column',
-                    children: [
-                      {
-                        type: 'text',
-                        text: o
-                      },
-                      {
-                        type: 'progress',
-                        value: 0,
-                        total: 0
-                      }
-                    ]
+                    type: 'container',
+                    padding: {
+                      top: 5,
+                      right: 5,
+                      bottom: 5,
+                      left: 5
+                    },
+                    child: {
+                      type: 'column',
+                      children: [
+                        {
+                          type: 'text',
+                          text: o
+                        },
+                        {
+                          type: 'progress',
+                          value: 0,
+                          total: 0
+                        }
+                      ]
+                    }
+                  },
+                  on_click: {
+                    action: 'vote',
+                    value: { }
                   }
-                },
-                on_click: {
-                  action: 'vote',
-                  value: { }
-                }
-              } as blocks.Button))
+                } as blocks.Button))
+              }
             ]
           }
         }

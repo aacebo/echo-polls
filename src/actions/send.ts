@@ -5,7 +5,6 @@ import { Form } from '../models';
 export function send(app: App) {
   return async ({ session_id, chat, user, value, ack }: ActionHandlerArgs<'form', Form>['chat']) => {
     try {
-      app.log(value);
       await app.api.views.dialogs.close(session_id, 'polls.create');
       await app.api.messages.createFor(user.name, chat.id, {
         visibility: 'public',
